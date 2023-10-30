@@ -10,9 +10,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.praktikum.pageobject.CreateNewOrderAndCancel;
 
-
-import static ru.praktikum.pageobject.constants.URL.HOMEPAGE;
-
 @RunWith(Parameterized.class)
 public class CreateNewOrderTest
 {
@@ -68,25 +65,22 @@ public class CreateNewOrderTest
         /*ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
         driver = new ChromeDriver(options);*/
-        driver = new ChromeDriver();
-        //driver = new FirefoxDriver();
+        //driver = new ChromeDriver();
+        driver = new FirefoxDriver();
     }
 
     @Test
     public void checkCreateOrderAndCancelOrder()
     {
+        CreateNewOrderAndCancel objCreateNewOrderForTestFromHeaderAndCancel = new CreateNewOrderAndCancel(driver);
 
-        CreateNewOrderAndCancel objCreateNewOrderForTestFromHeader = new CreateNewOrderAndCancel(driver);
-        objCreateNewOrderForTestFromHeader.createNewOrderFromHeader(renterFirstName, renterSecondName, renterDeliveryAddress,
-                renterMetroStation, renterPhoneNumber, dateWhenDeliveryScooter,
-                rentalPeriod, firstColorForScooter, secondColorForScooter, renterComment);
-
-
-
-        CreateNewOrderAndCancel objCreateNewOrderForTestFromFooter = new CreateNewOrderAndCancel(driver);
-        objCreateNewOrderForTestFromFooter.createNewOrderFromFooter(renterFirstName, renterSecondName, renterDeliveryAddress,
-                renterMetroStation, renterPhoneNumber, dateWhenDeliveryScooter,
-                rentalPeriod, firstColorForScooter, secondColorForScooter, renterComment);
+        objCreateNewOrderForTestFromHeaderAndCancel.enterToOrderPageFromHeader();
+        objCreateNewOrderForTestFromHeaderAndCancel.createNewOrderFirstPage(renterFirstName, renterSecondName,
+                                                            renterDeliveryAddress, renterMetroStation, renterPhoneNumber);
+        objCreateNewOrderForTestFromHeaderAndCancel.gotoNextPageInOrder();
+        objCreateNewOrderForTestFromHeaderAndCancel.createNewOrderSecondPage(dateWhenDeliveryScooter, rentalPeriod,
+                                                            firstColorForScooter, secondColorForScooter, renterComment);
+        objCreateNewOrderForTestFromHeaderAndCancel.cancelOrder();
     }
     @After
     public void tearDown()

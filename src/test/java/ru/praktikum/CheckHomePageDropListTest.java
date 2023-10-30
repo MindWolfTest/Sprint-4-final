@@ -12,7 +12,7 @@ import ru.praktikum.pageobject.CheckHomePageDropList;
 
 import static org.junit.Assert.assertEquals;
 import static ru.praktikum.pageobject.constants.ConstantForTestingDropList.*;
-import static ru.praktikum.pageobject.constants.URL.HOMEPAGE;
+import static ru.praktikum.pageobject.constants.URL.HOME_PAGE;
 
 @RunWith(Parameterized.class)
 public class CheckHomePageDropListTest
@@ -72,7 +72,7 @@ public class CheckHomePageDropListTest
             driver = new ChromeDriver(options);*/
             driver = new ChromeDriver();
             //driver = new FirefoxDriver();
-            driver.get(HOMEPAGE);
+            driver.get(HOME_PAGE);
         }
 
         @Test

@@ -13,7 +13,7 @@ import java.time.Duration;
 import static org.hamcrest.core.StringStartsWith.startsWith;
 import static ru.praktikum.pageobject.constants.ScooterColorConstant.BLACK;
 import static ru.praktikum.pageobject.constants.ScooterColorConstant.GREY;
-import static ru.praktikum.pageobject.constants.URL.HOMEPAGE;
+import static ru.praktikum.pageobject.constants.URL.HOME_PAGE;
 
 public class CreateNewOrderAndCancel
 {
@@ -23,7 +23,7 @@ public class CreateNewOrderAndCancel
     private By buttonInHeader = By.className("Button_Button__ra12g");
 
     //Кнопка заказать в футере
-    private By buttonInFooter = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
+    //private By buttonInFooter = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
 
     //Поле Имени
     private By renterFirstNameField = By.xpath(".//input[@placeholder = '* Имя']");
@@ -93,23 +93,20 @@ public class CreateNewOrderAndCancel
     //Метод открытия главной стр сайта
     public void openHomePage()
     {
-        driver.get(HOMEPAGE);
+        driver.get(HOME_PAGE);
     }
 
     //Зашли на 1 стр оформления заказа через хедер
     public void enterToOrderPageFromHeader()
     {
-
         openHomePage();
         new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.visibilityOfElementLocated(buttonInHeader))
                 .click();
-
-
     }
 
     //Зашли на 1 стр оформления заказа через футер
-    public void enterToOrderPageFromFooter()
+    /*public void enterToOrderPageFromFooter()
     {
         openHomePage();
 
@@ -117,7 +114,7 @@ public class CreateNewOrderAndCancel
         new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.visibilityOfElementLocated(buttonInFooter))
                 .click();
-    }
+    }*/
 
     //Метод ввода имени заказчика
     public void inputRenterFirstNameField(String renterFirstName)
@@ -171,8 +168,8 @@ public class CreateNewOrderAndCancel
     {
         driver.findElement(By.xpath(".//div[text()='Про аренду']")).click();
         new WebDriverWait(driver, Duration.ofSeconds(30))
-                .until(ExpectedConditions.elementToBeClickable(rentalPeriodField))
-                        .click();
+                            .until(ExpectedConditions.elementToBeClickable(rentalPeriodField))
+                            .click();
 
         driver.findElement(By.xpath(".//div[text()='"+rentalPeriod+"']")).click();
     }
@@ -252,35 +249,43 @@ public class CreateNewOrderAndCancel
     public void cancelOrder ()
     {
         driver.findElement(checkOrderStatus).click();
-        new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.elementToBeClickable(cancelOrderButton));
-        driver.findElement(cancelOrderButton).click();
-        new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.elementToBeClickable(confirmCancelButton));
-        driver.findElement(confirmCancelButton).click();
-        new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.elementToBeClickable(confirmOkButton));
-        driver.findElement(confirmOkButton).click();
+        new WebDriverWait(driver, Duration.ofSeconds(30))
+                .until(ExpectedConditions.elementToBeClickable(cancelOrderButton))
+                .click();
+
+        new WebDriverWait(driver, Duration.ofSeconds(30))
+                .until(ExpectedConditions.elementToBeClickable(confirmCancelButton))
+                .click();
+
+        new WebDriverWait(driver, Duration.ofSeconds(30))
+                .until(ExpectedConditions.elementToBeClickable(confirmOkButton))
+                .click();
     }
 
 
 
     //Суммирующий метод для создания заказа через хедер
-    public void createNewOrderFromHeader (String renterFirstName,String renterSecondName,String renterDeliveryAddress,
-                                String renterMetroStation,String renterPhoneNumber,String dateWhenDeliveryScooter,
-                                String rentalPeriod,String firstColorForScooter,String secondColorForScooter,String renterComment)
+
+    public void createNewOrderFirstPage(String renterFirstName,String renterSecondName,String renterDeliveryAddress,
+                                        String renterMetroStation,String renterPhoneNumber)
     {
-        enterToOrderPageFromHeader();
         inputRenterFirstNameField(renterFirstName);
         inputRenterSecondNameField(renterSecondName);
         inputDeliveryAddressField(renterDeliveryAddress);
         chooseRenterMetroStationField(renterMetroStation);
         inputRenterPhoneNumberField(renterPhoneNumber);
-        gotoNextPageInOrder();
+    }
+
+    public void createNewOrderSecondPage(String dateWhenDeliveryScooter,
+                                         String rentalPeriod,String firstColorForScooter,
+                                         String secondColorForScooter,String renterComment)
+    {
         inputDateWhenDeliveryScooterField(dateWhenDeliveryScooter);
         chooseRentalPeriodField(rentalPeriod);
         chooseColorForScooterCheckBox(firstColorForScooter, secondColorForScooter);
         inputRenterCommentField(renterComment);
         pressButtonsForOrder();
         orderStatus(expectedOrderMessage);
-        cancelOrder();
     }
 
     //Суммирующий метод для создания заказа через футер
@@ -288,7 +293,7 @@ public class CreateNewOrderAndCancel
                                           String renterMetroStation,String renterPhoneNumber,String dateWhenDeliveryScooter,
                                           String rentalPeriod,String firstColorForScooter,String secondColorForScooter,String renterComment)
     {
-        enterToOrderPageFromFooter();
+        //enterToOrderPageFromFooter();
         inputRenterFirstNameField(renterFirstName);
         inputRenterSecondNameField(renterSecondName);
         inputDeliveryAddressField(renterDeliveryAddress);
@@ -303,5 +308,4 @@ public class CreateNewOrderAndCancel
         orderStatus(expectedOrderMessage);
         cancelOrder();
     }
-
 }
