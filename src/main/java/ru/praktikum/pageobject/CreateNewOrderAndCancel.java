@@ -97,74 +97,71 @@ public class CreateNewOrderAndCancel
     }
 
     //Зашли на 1 стр оформления заказа через хедер
-    public void enterToOrderPageFromHeader()
+    public CreateNewOrderAndCancel enterToOrderPageFromHeader()
     {
         openHomePage();
         new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.visibilityOfElementLocated(buttonInHeader))
                 .click();
+        return this;
     }
 
-    //Зашли на 1 стр оформления заказа через футер
-    /*public void enterToOrderPageFromFooter()
-    {
-        openHomePage();
-
-        driver.findElement(buttonAcceptCookies).click();
-        new WebDriverWait(driver, Duration.ofSeconds(30))
-                .until(ExpectedConditions.visibilityOfElementLocated(buttonInFooter))
-                .click();
-    }*/
-
     //Метод ввода имени заказчика
-    public void inputRenterFirstNameField(String renterFirstName)
+    public CreateNewOrderAndCancel inputRenterFirstNameField(String renterFirstName)
     {
         driver.findElement(renterFirstNameField).sendKeys(renterFirstName);
+        return this;
     }
 
     //Метод ввода фамилии заказчика
-    public void inputRenterSecondNameField(String renterSecondName)
+    public CreateNewOrderAndCancel inputRenterSecondNameField(String renterSecondName)
     {
         driver.findElement(renterSecondNameField).sendKeys(renterSecondName);
+        return this;
     }
 
     //Метод ввода адреса доставки
-    public void inputDeliveryAddressField (String deliveryAddress)
+    public CreateNewOrderAndCancel inputDeliveryAddressField (String deliveryAddress)
     {
         driver.findElement(renterDeliveryAddressField).sendKeys(deliveryAddress);
+        return this;
     }
 
     //Метод выбора станции метро
-    public void chooseRenterMetroStationField (String renterMetroStation)
+    public CreateNewOrderAndCancel chooseRenterMetroStationField (String renterMetroStation)
     {
 
         driver.findElement(renterMetroStationField).click();
         WebElement element = driver.findElement(By.xpath(".//div[2]/ul/li/button/div[text()='"+renterMetroStation+"']"));
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
         driver.findElement(By.xpath(".//div[2]/ul/li/button/div[text()='"+renterMetroStation+"']")).click();
+        return this;
     }
 
     //Метод ввода номера телефона
-    public void inputRenterPhoneNumberField (String renterPhoneNumber)
+    public CreateNewOrderAndCancel inputRenterPhoneNumberField (String renterPhoneNumber)
     {
         driver.findElement(renterPhoneNumberField).sendKeys(renterPhoneNumber);
+        return this;
     }
 
     //Метод перехода на следующую стр формы
-    public void gotoNextPageInOrder()
+    public CreateNewOrderAndCancel gotoNextPageInOrder()
     {
         driver.findElement(nextPageInOrder).click();
+        return this;
     }
 
     //Метод ввода даты доставки самоката
-    public void inputDateWhenDeliveryScooterField (String dateWhenDeliveryScooter)
+    public CreateNewOrderAndCancel inputDateWhenDeliveryScooterField (String dateWhenDeliveryScooter)
     {
         new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.elementToBeClickable(dateWhenDeliveryScooterField));
         driver.findElement(dateWhenDeliveryScooterField).sendKeys(dateWhenDeliveryScooter);
+        return this;
     }
 
     //Метод выбора станции метро
-    public void chooseRentalPeriodField (String rentalPeriod)
+    public CreateNewOrderAndCancel chooseRentalPeriodField (String rentalPeriod)
     {
         driver.findElement(By.xpath(".//div[text()='Про аренду']")).click();
         new WebDriverWait(driver, Duration.ofSeconds(30))
@@ -172,10 +169,11 @@ public class CreateNewOrderAndCancel
                             .click();
 
         driver.findElement(By.xpath(".//div[text()='"+rentalPeriod+"']")).click();
+        return this;
     }
 
     //Метод выбора цвета для скутера
-    public void chooseColorForScooterCheckBox (String firstColorForScooter, String secondColorForScooter)
+    public CreateNewOrderAndCancel chooseColorForScooterCheckBox (String firstColorForScooter, String secondColorForScooter)
     {
         //реализовал if else для упрощения ввода тестовых данных (цвета можно менять местами)
         if (firstColorForScooter.equals(BLACK) && secondColorForScooter.equals(GREY))
@@ -218,35 +216,36 @@ public class CreateNewOrderAndCancel
         {
             driver.findElement(colorGreyForScooterCheckBox).click();
         }
-
-
+        return this;
     }
 
     //Метод ввода комментария
-    public void inputRenterCommentField(String renterComment)
+    public CreateNewOrderAndCancel inputRenterCommentField(String renterComment)
     {
         driver.findElement(renterCommentField).sendKeys(renterComment);
+        return this;
     }
 
     //Метод клика по кнопкам для оформления заказа
-    public void pressButtonsForOrder()
+    public CreateNewOrderAndCancel pressButtonsForOrder()
     {
-
         driver.findElement(buttonInSecondPage).click();
         driver.findElement(buttonForConfirmOrder).click();
+        return this;
     }
 
     //Метод сравнения полученного сообщения
-    public void orderStatus (String expectedOrderMessage)
+    public CreateNewOrderAndCancel orderStatus (String expectedOrderMessage)
     {
         new WebDriverWait(driver, Duration.ofSeconds(30)).until(ExpectedConditions.visibilityOfElementLocated(orderStatusMessage));
 
         String receivedOrderMessage = driver.findElement(orderStatusMessage).getText();
         MatcherAssert.assertThat("Ошибка! Заказ не оформлен!",receivedOrderMessage, startsWith(expectedOrderMessage));
+        return this;
     }
 
     //Метод отмены полученного заказа
-    public void cancelOrder ()
+    public CreateNewOrderAndCancel cancelOrder ()
     {
         driver.findElement(checkOrderStatus).click();
         new WebDriverWait(driver, Duration.ofSeconds(30))
@@ -260,13 +259,14 @@ public class CreateNewOrderAndCancel
         new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.elementToBeClickable(confirmOkButton))
                 .click();
+        return this;
     }
 
 
 
     //Суммирующий метод для создания заказа через хедер
 
-    public void createNewOrderFirstPage(String renterFirstName,String renterSecondName,String renterDeliveryAddress,
+    public CreateNewOrderAndCancel createNewOrderFirstPage(String renterFirstName,String renterSecondName,String renterDeliveryAddress,
                                         String renterMetroStation,String renterPhoneNumber)
     {
         inputRenterFirstNameField(renterFirstName);
@@ -274,9 +274,10 @@ public class CreateNewOrderAndCancel
         inputDeliveryAddressField(renterDeliveryAddress);
         chooseRenterMetroStationField(renterMetroStation);
         inputRenterPhoneNumberField(renterPhoneNumber);
+        return this;
     }
 
-    public void createNewOrderSecondPage(String dateWhenDeliveryScooter,
+    public CreateNewOrderAndCancel createNewOrderSecondPage(String dateWhenDeliveryScooter,
                                          String rentalPeriod,String firstColorForScooter,
                                          String secondColorForScooter,String renterComment)
     {
@@ -286,26 +287,7 @@ public class CreateNewOrderAndCancel
         inputRenterCommentField(renterComment);
         pressButtonsForOrder();
         orderStatus(expectedOrderMessage);
+        return this;
     }
 
-    //Суммирующий метод для создания заказа через футер
-    public void createNewOrderFromFooter (String renterFirstName,String renterSecondName,String renterDeliveryAddress,
-                                          String renterMetroStation,String renterPhoneNumber,String dateWhenDeliveryScooter,
-                                          String rentalPeriod,String firstColorForScooter,String secondColorForScooter,String renterComment)
-    {
-        //enterToOrderPageFromFooter();
-        inputRenterFirstNameField(renterFirstName);
-        inputRenterSecondNameField(renterSecondName);
-        inputDeliveryAddressField(renterDeliveryAddress);
-        chooseRenterMetroStationField(renterMetroStation);
-        inputRenterPhoneNumberField(renterPhoneNumber);
-        gotoNextPageInOrder();
-        inputDateWhenDeliveryScooterField(dateWhenDeliveryScooter);
-        chooseRentalPeriodField(rentalPeriod);
-        chooseColorForScooterCheckBox(firstColorForScooter, secondColorForScooter);
-        inputRenterCommentField(renterComment);
-        pressButtonsForOrder();
-        orderStatus(expectedOrderMessage);
-        cancelOrder();
-    }
 }

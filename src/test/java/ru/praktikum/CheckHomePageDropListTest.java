@@ -1,15 +1,10 @@
 package ru.praktikum;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import ru.praktikum.pageobject.CheckHomePageDropList;
-
 import static org.junit.Assert.assertEquals;
 import static ru.praktikum.pageobject.constants.ConstantForTestingDropList.*;
 import static ru.praktikum.pageobject.constants.URL.HOME_PAGE;
@@ -62,18 +57,6 @@ public class CheckHomePageDropListTest extends BeforeAndAfterForAll
         }
 
 
-
-        @Before
-        /*public void setUp()
-        {
-             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-            driver = new ChromeDriver(options);
-            driver = new ChromeDriver();
-            //driver = new FirefoxDriver();
-            driver.get(HOME_PAGE);
-        }*/
-
         @Test
         public void checkHomePageList ()
         {
@@ -88,9 +71,5 @@ public class CheckHomePageDropListTest extends BeforeAndAfterForAll
             String result = driver.findElement(answer).getText();
             assertEquals(expected, result);
         }
-    /*@After
-    public void tearDown()
-    {
-        driver.quit();
-    }*/
+
 }

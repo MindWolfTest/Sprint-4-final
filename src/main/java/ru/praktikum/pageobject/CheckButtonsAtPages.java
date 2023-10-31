@@ -96,7 +96,4 @@ public class CheckButtonsAtPages
         assertThat("Ошибка! Страница самоката не открылась!", driver.getCurrentUrl(), containsString(HOME_PAGE));
         return this;
     }
-
-
-
 }

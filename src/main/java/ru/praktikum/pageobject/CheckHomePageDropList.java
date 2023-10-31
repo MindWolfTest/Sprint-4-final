@@ -6,7 +6,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 public class CheckHomePageDropList
@@ -43,8 +42,6 @@ public class CheckHomePageDropList
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(questionsHeader));
         return this;
     }
-
-
 
     //Метод клика по вопросу
     public CheckHomePageDropList clickForQuestion(By question)
