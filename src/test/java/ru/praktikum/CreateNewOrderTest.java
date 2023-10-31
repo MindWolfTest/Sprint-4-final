@@ -65,6 +65,8 @@ public class CreateNewOrderTest extends BeforeAndAfterForAll
                 .gotoNextPageInOrder()
                 .createNewOrderSecondPage(dateWhenDeliveryScooter, rentalPeriod,
                                           firstColorForScooter, secondColorForScooter, renterComment)
+
+                .confirmAndCheckOrderFromSecondPage()
                 .cancelOrder();
     }
 }

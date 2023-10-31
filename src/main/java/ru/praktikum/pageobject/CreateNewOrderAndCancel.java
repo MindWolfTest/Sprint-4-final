@@ -285,9 +285,13 @@ public class CreateNewOrderAndCancel
         chooseRentalPeriodField(rentalPeriod);
         chooseColorForScooterCheckBox(firstColorForScooter, secondColorForScooter);
         inputRenterCommentField(renterComment);
+        return this;
+    }
+
+    public CreateNewOrderAndCancel confirmAndCheckOrderFromSecondPage()
+    {
         pressButtonsForOrder();
         orderStatus(expectedOrderMessage);
         return this;
     }
-
 }
