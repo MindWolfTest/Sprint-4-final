@@ -198,24 +198,16 @@ public class CreateNewOrderAndCancel
             driver.findElement(colorGreyForScooterCheckBox).click();
         }
 
-        else if (firstColorForScooter.equals(BLACK) && secondColorForScooter.isEmpty())
+        else if (firstColorForScooter.equals(BLACK) && secondColorForScooter.isEmpty() || firstColorForScooter.isEmpty() && secondColorForScooter.equals(BLACK))
         {
             driver.findElement(colorBlackForScooterCheckBox).click();
         }
 
-        else if (firstColorForScooter.equals(GREY) && secondColorForScooter.isEmpty())
+        else if (firstColorForScooter.equals(GREY) && secondColorForScooter.isEmpty() || firstColorForScooter.isEmpty() && secondColorForScooter.equals(GREY))
         {
             driver.findElement(colorGreyForScooterCheckBox).click();
-        }
-        else if (firstColorForScooter.isEmpty() && secondColorForScooter.equals(BLACK))
-        {
-            driver.findElement(colorBlackForScooterCheckBox).click();
         }
 
-        else if (firstColorForScooter.isEmpty() && secondColorForScooter.equals(GREY))
-        {
-            driver.findElement(colorGreyForScooterCheckBox).click();
-        }
         return this;
     }
 
