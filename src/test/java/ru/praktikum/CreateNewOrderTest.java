@@ -11,9 +11,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.praktikum.pageobject.CreateNewOrderAndCancel;
 
 @RunWith(Parameterized.class)
-public class CreateNewOrderTest
+public class CreateNewOrderTest extends BeforeAndAfterForAll
 {
-    private WebDriver driver;
+    //private WebDriver driver;
     private final String renterFirstName;
     private final String renterSecondName;
     private final String renterDeliveryAddress;
@@ -59,15 +59,15 @@ public class CreateNewOrderTest
         };
     }
 
-    @Before
+    /*@Before
     public void setUp()
     {
-        /*ChromeOptions options = new ChromeOptions();
+        ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);*/
+        driver = new ChromeDriver(options);
         //driver = new ChromeDriver();
         driver = new FirefoxDriver();
-    }
+    }*/
 
     @Test
     public void checkCreateOrderAndCancelOrder()
@@ -82,9 +82,9 @@ public class CreateNewOrderTest
                                                             firstColorForScooter, secondColorForScooter, renterComment);
         objCreateNewOrderForTestFromHeaderAndCancel.cancelOrder();
     }
-    @After
+    /*@After
     public void tearDown()
     {
         driver.quit();
-    }
+    }*/
 }

@@ -1,31 +1,9 @@
 package ru.praktikum;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import ru.praktikum.pageobject.CheckButtonsAtPages;
-
-
-public class CheckButtonsAtPagesTest
+public class CheckButtonsAtPagesTest extends BeforeAndAfterForAll
 {
-    private WebDriver driver;
-
-    /*public CheckButtonsAtPagesTest()
-    {
-    }*/
-
-    @Before
-    public void setUp()
-    {
-        /*ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-        driver = new ChromeDriver(options);*/
-        driver = new ChromeDriver();
-        //driver = new FirefoxDriver();
-    }
-
     @Test
     public void checkFooterButtonOrderFromHomePage ()
     {
@@ -80,15 +58,6 @@ public class CheckButtonsAtPagesTest
                 .openOrderPage()
                 .clickAtButtonSamokat()
                 .checkHomePage();
-    }
-
-
-
-
-    @After
-    public void tearDown()
-    {
-        driver.quit();
     }
 }
 

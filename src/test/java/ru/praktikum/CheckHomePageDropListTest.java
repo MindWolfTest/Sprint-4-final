@@ -15,9 +15,8 @@ import static ru.praktikum.pageobject.constants.ConstantForTestingDropList.*;
 import static ru.praktikum.pageobject.constants.URL.HOME_PAGE;
 
 @RunWith(Parameterized.class)
-public class CheckHomePageDropListTest
+public class CheckHomePageDropListTest extends BeforeAndAfterForAll
 {
-    private WebDriver driver;
     private final By question;
     private final By answer;
     private final By answerResult;
@@ -65,19 +64,20 @@ public class CheckHomePageDropListTest
 
 
         @Before
-        public void setUp()
+        /*public void setUp()
         {
-             /*ChromeOptions options = new ChromeOptions();
+             ChromeOptions options = new ChromeOptions();
             options.addArguments("--no-sandbox", "--headless", "--disable-dev-shm-usage");
-            driver = new ChromeDriver(options);*/
+            driver = new ChromeDriver(options);
             driver = new ChromeDriver();
             //driver = new FirefoxDriver();
             driver.get(HOME_PAGE);
-        }
+        }*/
 
         @Test
         public void checkHomePageList ()
         {
+            driver.get(HOME_PAGE);
             CheckHomePageDropList objCheckDropListAtHomePage = new CheckHomePageDropList(driver);
 
             objCheckDropListAtHomePage
@@ -88,9 +88,9 @@ public class CheckHomePageDropListTest
             String result = driver.findElement(answer).getText();
             assertEquals(expected, result);
         }
-    @After
+    /*@After
     public void tearDown()
     {
         driver.quit();
-    }
+    }*/
 }
