@@ -22,9 +22,6 @@ public class CreateNewOrderAndCancel
     //Кнопка заказать в хеддере
     private By buttonInHeader = By.className("Button_Button__ra12g");
 
-    //Кнопка заказать в футере
-    //private By buttonInFooter = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
-
     //Поле Имени
     private By renterFirstNameField = By.xpath(".//input[@placeholder = '* Имя']");
 
@@ -57,9 +54,6 @@ public class CreateNewOrderAndCancel
 
     //поле комментарий для курьера
     private By renterCommentField = By.xpath(".//input[@placeholder = 'Комментарий для курьера']");
-
-    //Кнопка принять куки
-    private By buttonAcceptCookies = By.id("rcc-confirm-button");
 
     //Кнопка Заказать на стр "Про аренду"
     private By buttonInSecondPage = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']");
@@ -172,17 +166,38 @@ public class CreateNewOrderAndCancel
         return this;
     }
 
-    //Метод выбора цвета для скутера
-    public CreateNewOrderAndCancel chooseColorForScooterCheckBox (String firstColorForScooter, String secondColorForScooter)
+    //Метод выбора первого цвета для скутера
+
+    public CreateNewOrderAndCancel chooseFirstColor(String firstColorForScooter)
     {
-        //реализовал if else для упрощения ввода тестовых данных (цвета можно менять местами)
-        if (firstColorForScooter.equals(BLACK) && secondColorForScooter.equals(GREY))
+        if (firstColorForScooter.equals(BLACK))
         {
             driver.findElement(colorBlackForScooterCheckBox).click();
+        }
+        else if(firstColorForScooter.equals(GREY))
+        {
             driver.findElement(colorGreyForScooterCheckBox).click();
         }
+        return this;
+    }
 
-        else if (firstColorForScooter.equals(GREY) && secondColorForScooter.equals(BLACK))
+    //Метод выбора второго цвета для скутера
+    public CreateNewOrderAndCancel chooseSecondColor(String secondColorForScooter)
+    {
+        if (secondColorForScooter.equals(BLACK))
+        {
+            driver.findElement(colorBlackForScooterCheckBox).click();
+        }
+        else if (secondColorForScooter.equals(GREY))
+        {
+            driver.findElement(colorGreyForScooterCheckBox).click();
+        }
+        return this;
+    }
+    /*public CreateNewOrderAndCancel chooseColorForScooterCheckBox (String firstColorForScooter, String secondColorForScooter)
+    {
+        //реализовал if else для упрощения ввода тестовых данных (цвета можно менять местами)
+        if (firstColorForScooter.equals(BLACK) && secondColorForScooter.equals(GREY) || firstColorForScooter.equals(GREY) && secondColorForScooter.equals(BLACK))
         {
             driver.findElement(colorBlackForScooterCheckBox).click();
             driver.findElement(colorGreyForScooterCheckBox).click();
@@ -209,7 +224,7 @@ public class CreateNewOrderAndCancel
         }
 
         return this;
-    }
+    }*/
 
     //Метод ввода комментария
     public CreateNewOrderAndCancel inputRenterCommentField(String renterComment)
@@ -269,7 +284,7 @@ public class CreateNewOrderAndCancel
         return this;
     }
 
-    public CreateNewOrderAndCancel createNewOrderSecondPage(String dateWhenDeliveryScooter,
+    /*public CreateNewOrderAndCancel createNewOrderSecondPage(String dateWhenDeliveryScooter,
                                          String rentalPeriod,String firstColorForScooter,
                                          String secondColorForScooter,String renterComment)
     {
@@ -278,7 +293,7 @@ public class CreateNewOrderAndCancel
         chooseColorForScooterCheckBox(firstColorForScooter, secondColorForScooter);
         inputRenterCommentField(renterComment);
         return this;
-    }
+    }*/
 
     public CreateNewOrderAndCancel confirmAndCheckOrderFromSecondPage()
     {
