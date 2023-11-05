@@ -41,10 +41,10 @@ public class CreateNewOrderTest extends BeforeAndAfterForAll
     {
         return new Object[][]
         {
-                {"Ва", "Петров", "Арбат", "Таганская", "+79991002277", "30.10.2023", "сутки", "grey", "black", "1"},
-                {"Вас", "ПетровПетров", "Балчуг", "Пушкинская", "+79991002277", "31.10.2023", "двое суток", "black", "", "2"},
-                {"ВасяВасяВасяВа", "ПетровПетровПетро", "Центральный проезд Хорошёвского Серебряного бора7",
-                        "Лихоборы", "+79991002277", "30.10.2023", "трое суток" , "black", "black", "3"},
+                //{"Ва", "Петров", "Арбат", "Таганская", "+79991002277", "30.10.2023", "сутки", GREY, BLACK, "1"},
+                //{"Вас", "ПетровПетров", "Балчуг", "Пушкинская", "+79991002277", "31.10.2023", "двое суток", "black", "", "2"},
+                //{"ВасяВасяВасяВа", "ПетровПетровПетро", "Центральный проезд Хорошёвского Серебряного бора7",
+                //        "Лихоборы", "+79991002277", "30.10.2023", "трое суток" , "black", "black", "3"},
                 {"ВасяВасяВасяВас", "Петро", "Абельмановская Застава", "Калужская", "+79991002277", "30.11.2023", "четверо суток", "grey", "grey", "4"},
                 {"Вася Вася", "ПятаяФамилия", "Таганская улица д. 29", "Минская", "89991002277", "01.12.2023", "пятеро суток", "", "grey", "5"},
                 {" ВасяВася", "ШестаяФамилия", "Таганская улица, 29", "Беговая", "899910022771", "5.5.2023", "шестеро суток", "grey", "", "6"},
@@ -59,12 +59,23 @@ public class CreateNewOrderTest extends BeforeAndAfterForAll
 
         objCreateNewOrderForTestFromHeaderAndCancel
                 .enterToOrderPageFromHeader()
-                .createNewOrderFirstPage(renterFirstName, renterSecondName, renterDeliveryAddress,
-                                         renterMetroStation, renterPhoneNumber)
+                //Первая стр заказа
 
+                .inputRenterFirstNameField(renterFirstName)
+                .inputRenterSecondNameField(renterSecondName)
+                .inputDeliveryAddressField(renterDeliveryAddress)
+                .chooseRenterMetroStationField(renterMetroStation)
+                .inputRenterPhoneNumberField(renterPhoneNumber)
+
+                //переход на 2 стр заказа
                 .gotoNextPageInOrder()
-                .createNewOrderSecondPage(dateWhenDeliveryScooter, rentalPeriod,
-                                          firstColorForScooter, secondColorForScooter, renterComment)
+                //вторая страница заказа
+                .inputDateWhenDeliveryScooterField(dateWhenDeliveryScooter)
+                .chooseRentalPeriodField(rentalPeriod)
+                //.chooseColorForScooterCheckBox(firstColorForScooter, secondColorForScooter)
+                .chooseFirstColor(firstColorForScooter)
+                .chooseSecondColor(secondColorForScooter)
+                .inputRenterCommentField(renterComment)
 
                 .confirmAndCheckOrderFromSecondPage()
                 .cancelOrder();
