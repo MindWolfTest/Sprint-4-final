@@ -72,12 +72,11 @@ public class CreateNewOrderTest extends BeforeAndAfterForAll
                 //вторая страница заказа
                 .inputDateWhenDeliveryScooterField(dateWhenDeliveryScooter)
                 .chooseRentalPeriodField(rentalPeriod)
-                //.chooseColorForScooterCheckBox(firstColorForScooter, secondColorForScooter)
                 .chooseFirstColor(firstColorForScooter)
                 .chooseSecondColor(secondColorForScooter)
                 .inputRenterCommentField(renterComment)
-
                 .confirmAndCheckOrderFromSecondPage()
+
                 .cancelOrder();
     }
 }

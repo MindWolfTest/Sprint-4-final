@@ -194,37 +194,6 @@ public class CreateNewOrderAndCancel
         }
         return this;
     }
-    /*public CreateNewOrderAndCancel chooseColorForScooterCheckBox (String firstColorForScooter, String secondColorForScooter)
-    {
-        //реализовал if else для упрощения ввода тестовых данных (цвета можно менять местами)
-        if (firstColorForScooter.equals(BLACK) && secondColorForScooter.equals(GREY) || firstColorForScooter.equals(GREY) && secondColorForScooter.equals(BLACK))
-        {
-            driver.findElement(colorBlackForScooterCheckBox).click();
-            driver.findElement(colorGreyForScooterCheckBox).click();
-        }
-
-        else if (firstColorForScooter.equals(BLACK) && secondColorForScooter.equals(BLACK))
-        {
-            driver.findElement(colorBlackForScooterCheckBox).click();
-        }
-
-        else if (firstColorForScooter.equals(GREY) && secondColorForScooter.equals(GREY))
-        {
-            driver.findElement(colorGreyForScooterCheckBox).click();
-        }
-
-        else if (firstColorForScooter.equals(BLACK) && secondColorForScooter.isEmpty() || firstColorForScooter.isEmpty() && secondColorForScooter.equals(BLACK))
-        {
-            driver.findElement(colorBlackForScooterCheckBox).click();
-        }
-
-        else if (firstColorForScooter.equals(GREY) && secondColorForScooter.isEmpty() || firstColorForScooter.isEmpty() && secondColorForScooter.equals(GREY))
-        {
-            driver.findElement(colorGreyForScooterCheckBox).click();
-        }
-
-        return this;
-    }*/
 
     //Метод ввода комментария
     public CreateNewOrderAndCancel inputRenterCommentField(String renterComment)
@@ -268,32 +237,6 @@ public class CreateNewOrderAndCancel
                 .click();
         return this;
     }
-
-
-
-    //Суммирующий метод для создания заказа через хедер
-
-    public CreateNewOrderAndCancel createNewOrderFirstPage(String renterFirstName,String renterSecondName,String renterDeliveryAddress,
-                                        String renterMetroStation,String renterPhoneNumber)
-    {
-        inputRenterFirstNameField(renterFirstName);
-        inputRenterSecondNameField(renterSecondName);
-        inputDeliveryAddressField(renterDeliveryAddress);
-        chooseRenterMetroStationField(renterMetroStation);
-        inputRenterPhoneNumberField(renterPhoneNumber);
-        return this;
-    }
-
-    /*public CreateNewOrderAndCancel createNewOrderSecondPage(String dateWhenDeliveryScooter,
-                                         String rentalPeriod,String firstColorForScooter,
-                                         String secondColorForScooter,String renterComment)
-    {
-        inputDateWhenDeliveryScooterField(dateWhenDeliveryScooter);
-        chooseRentalPeriodField(rentalPeriod);
-        chooseColorForScooterCheckBox(firstColorForScooter, secondColorForScooter);
-        inputRenterCommentField(renterComment);
-        return this;
-    }*/
 
     public CreateNewOrderAndCancel confirmAndCheckOrderFromSecondPage()
     {
